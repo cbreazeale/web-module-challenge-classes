@@ -85,8 +85,20 @@ class Car {
     this.odometer = 0;
   }
   fill(gallons){
-    this.tank = this.tank+=gallons;
+    this.tank = this.tank += gallons;
   }
+  drive(distance){
+    if(this.tank > 0){
+      this.odometer = this.odometer += distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+    }
+    else  {
+
+      this.tank = 0
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+  }
+
 }
 
 /*
@@ -103,7 +115,15 @@ class Car {
 */
 
 class Lambdasian {
-
+  constructor(obj = {name:'defaultName'}) {
+    const {name, age, location} = obj
+      this.name = name;
+      this.age = age;
+      this.location = location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`
+  }
 }
 
 /*
@@ -121,7 +141,20 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian{
+  constructor(attersObj){
+    super({name: attersObj.name, age:attersObj.age, location: attersObj.location})
+    this.specialty = attersObj.specialty;
+    this.favLanguage = attersObj.favLanguage;
+    this.catchPhrase = attersObj.catchPhrase;
+
+  }
+  demo(subject){
+    return `Today we are learning about ${subject}`
+  }
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`
+  }
 
 }
 
@@ -141,8 +174,22 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
+class Student extends Lambdasian {
+  constructor(attersObj){
+    super({name: attersObj.name, age:attersObj.age, location: attersObj.location});
+    this.previousBackground = attersObj.previousBackground;
+    this.className = attersObj.className;
+    this.favSubjects = attersObj.favSubjects;
+  }
+  listSubjects(){
+    return `Loving HTML, CSS, JS!`
+  }
+  PRAssignment(){
 
+  }
+  sprintChallenge(){
+
+  }
 }
 
 /*
@@ -171,8 +218,18 @@ class ProjectManager {
       + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
-
-
+const instructorAttr = {
+  name: 'Luis',
+  age: 45,
+  location: 'Provo',
+  specialty: 'SQL',
+  favLanguage: 'C#',
+  catchPhrase: 'Don\'t forget the homies'
+}
+const c1 = new Instructor(instructorAttr)
+const l1 = new Lambdasian()
+console.log(c1)
+console.log(l1)
 //End of Challenge
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo(){
