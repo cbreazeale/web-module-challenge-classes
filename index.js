@@ -182,13 +182,13 @@ class Student extends Lambdasian {
     this.favSubjects = attersObj.favSubjects;
   }
   listSubjects(){
-    return `Loving HTML, CSS, JS!`
+    return `${this.favSubjects}`
   }
-  PRAssignment(){
-
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
   }
-  sprintChallenge(){
-
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
 }
 
@@ -206,11 +206,21 @@ class Student extends Lambdasian {
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(obj){
+    super({name:obj.name, age:obj.age, location:obj.location, specialty:obj.specialty, favLanguage:obj.favLanguage, catchPhrase:obj.catchPhrase});
+    this.gradClassName = obj.gradClassName;
+    this.favInstructor = obj.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(student,subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  }
 }
 
-/*
+/*obj.
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
     - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
